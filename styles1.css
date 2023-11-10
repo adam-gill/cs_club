@@ -24,10 +24,11 @@ nav {
 
 .background__container {
   height: 100%;
-  background-image: url('https://www.waynesburg.edu/sites/default/files/2021-02/newoverhead_upper.jpg');
+  /* background-image: url('https://www.waynesburg.edu/sites/default/files/2021-02/newoverhead_upper.jpg'); */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #242424), url('https://www.waynesburg.edu/sites/default/files/2021-02/newoverhead_upper.jpg'); /* Add your image URL here */
   background-size: cover;
   background-position: center;
-  
+  border-bottom: 2px solid white;
 }
 
 .nav__content--container {
@@ -75,6 +76,10 @@ nav {
   filter: blur(none);
   border-radius: 9999px;
   transform: translateY(2px);
+}
+
+.burger__icon {
+  width: 75px;
 }
 
 .logo__text--container {
@@ -166,4 +171,73 @@ nav {
 .item {
   font-size: 18px;
   margin-left: 24px;
+}
+
+
+/* RECENT */
+
+.recents__title {
+  font-size: 36px;
+  padding: 36px 0;
+}
+
+.sub__title {
+  font-size: 36px;
+}
+
+#main__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 36px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.rasp__pic {
+  width: 50%;
+  height: 500px;
+}
+
+.pic__event--container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px;
+}
+
+.description {
+  line-height: 28px;
+}
+
+.article__link {
+  color: #3365f0;
+}
+
+.link__icon {
+  margin-left: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+/* .recent__link {
+} */
+
+.click__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  padding-top: 64px;
+}
+
+.recent__link-a {
+  text-decoration: underline;
 }
