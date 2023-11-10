@@ -10,6 +10,7 @@
       type="image/png"
     />
     <title>Waynesburg Computer Science Club</title>
+    <script src="index.js"></script>
   </head>
   <body style="background-color: #242424">
     <nav>
@@ -29,13 +30,26 @@
 
             <ul class="nav__links">
               <li class="link">
-                <a href="index.html"><img class="burger__icon" src="./assets/icons8-menu-100.png" alt=""></a>
+                <a onclick="openMenu()" class="burger__container" href="index.html"><img class="burger__icon" src="./assets/icons8-menu-100.png" alt=""></a>
               </li>
-              
             </ul>
+
+            
+          
           </div>
         </div>
       </div>
+
+      <div id="menu" class="menu">
+        <img onclick="closeMenu()" class="menu__close" src="./assets/icons8-close-100.png" alt="">
+        <div class="menu__link--container">
+          <a class="menu__link">Home</a>
+          <a class="menu__link">Projects</a>
+          <a class="menu__link">Events</a>
+          <a class="menu__link">Members</a>
+        </div>
+      </div>
+
     </nav>
 
     <section id="main__page">
