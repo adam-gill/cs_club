@@ -1,9 +1,9 @@
-function closeMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.visibility = 'none';
+function openMenu() {
+    document.body.classList += " menu--open"
+    console.log("open")
 }
 
-function openMenu() {
-    const menu = document.getElementById("menu");
-    menu.style.visibility = 'visible';
+function closeMenu() {  
+    document.body.classList.remove('menu--open')
+    console.log("close")
 }
