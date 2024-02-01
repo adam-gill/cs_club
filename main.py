@@ -1,8 +1,7 @@
 import tkinter as tk # library that allows us to build a little app
+from tkinter import PhotoImage # add image
 import ccxt # API to fetch btc price from crypto.com
 import locale # to format currency to USD
-import time # to fetch price of bitcoin every 5 seconds
-import signal # timer for our app (5 minutes)
 
 # something I added to format number into currency
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
@@ -53,11 +52,15 @@ label = tk.Label(app, text="Live Crypto Prices:", font=title_font)
 bitcoinLabel = tk.Label(app, text=f"Bitcoin Price: fetching...", font=gen_font)
 ethereumLabel = tk.Label(app, text=f"Ethereum Price: fetching...", font=gen_font)
 solanaLabel = tk.Label(app, text=f"Solana Price: fetching...", font=gen_font)
+btc_img = PhotoImage(file='btc.png')
+img = tk.Label(app, image=btc_img)
 
 label.pack(pady=10)
 bitcoinLabel.pack(pady=10)
 ethereumLabel.pack(pady=10)
 solanaLabel.pack(pady=10)
+img.pack(pady=10)
+
 
 update_price()
 
