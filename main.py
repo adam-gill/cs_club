@@ -65,6 +65,7 @@ img.pack(pady=10)
 update_price()
 
 # git test
+# gg
 
 # Start the main event loop
 app.mainloop()
