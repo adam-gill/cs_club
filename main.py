@@ -6,7 +6,7 @@ def get_binance_bitcoin_price():
 
     # try and except blocks to catch errors and prevent the program from stopping abruptly
     try:
-        ticker = binance.fetch_ticker('BTC/USD')
+        ticker = binance.fetch_ticker('BTC/USDT')
         last_price = ticker['last']
         return last_price
 
