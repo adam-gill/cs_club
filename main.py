@@ -1,12 +1,16 @@
 import tkinter as tk
 import ccxt
+import locale
+
+# something I added to format number into currency
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 def get_binance_bitcoin_price():
-    binance = ccxt.binance()
+    cryptocom = ccxt.cryptocom()
 
     # try and except blocks to catch errors and prevent the program from stopping abruptly
     try:
-        ticker = binance.fetch_ticker('BTC/USDT')
+        ticker = cryptocom.fetch_ticker('BTC/USD')
         last_price = ticker['last']
         return last_price
 
@@ -21,6 +25,9 @@ def get_binance_bitcoin_price():
 def on_button_click():
 
     btc_price = get_binance_bitcoin_price()
+
+    if btc_price is not None:
+        btc_price = locale.currency(btc_price, grouping=True)
 
     label.config(text=f"The most recent price of bitcoin is: {btc_price}")
 
