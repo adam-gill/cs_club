@@ -1,18 +1,26 @@
-import tkinter as tk
-import ccxt
-import locale
+import tkinter as tk # library that allows us to build a little app
+import ccxt # API to fetch btc price from crypto.com
+import locale # to format currency to USD
+import time # to fetch price of bitcoin every 5 seconds
+import signal # timer for our app (5 minutes)
 
 # something I added to format number into currency
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
-def get_binance_bitcoin_price():
+crypto_tickers = {
+    'btc' : 'BTC/USD',
+    'eth' : 'ETH/USD',
+    'sol' : 'SOL/USD'
+}
+
+def get_crypto_price(ticker):
     cryptocom = ccxt.cryptocom()
 
     # try and except blocks to catch errors and prevent the program from stopping abruptly
     try:
-        ticker = cryptocom.fetch_ticker('BTC/USD')
+        ticker = cryptocom.fetch_ticker(ticker)
         last_price = ticker['last']
-        return last_price
+        return locale.currency(last_price, grouping=True)
 
     except ccxt.NetworkError as e:
         print(f"Network error: {e}")
@@ -21,28 +29,37 @@ def get_binance_bitcoin_price():
     except Exception as e:
         print(f"An error occurred: {e}")
 
+def update_price():
+    btc_price = get_crypto_price(crypto_tickers.get('btc', 'none'))
+    eth_price = get_crypto_price(crypto_tickers.get('eth', 'none'))
+    sol_price = get_crypto_price(crypto_tickers.get('sol', 'none'))
 
-def on_button_click():
+    bitcoinLabel.config(text=f"Bitcoin Price: {btc_price}")
+    ethereumLabel.config(text=f"Ethereum Price: {eth_price}")
+    solanaLabel.config(text=f"Solana Price: {sol_price}")
 
-    btc_price = get_binance_bitcoin_price()
-
-    if btc_price is not None:
-        btc_price = locale.currency(btc_price, grouping=True)
-
-    label.config(text=f"The most recent price of bitcoin is: {btc_price}")
+    app.after(1500, update_price)
 
 # Create the main window
 app = tk.Tk()
-app.title("Simple Tkinter App")
-app.geometry("400x400")
+app.title("Get Crypto Prices")
+app.geometry("800x600")
+
+title_font = ('JetBrains Mono', 32)
+gen_font = ('JetBrains Mono', 18)
 
 # Create a label
-label = tk.Label(app, text="Welcome to Tkinter App")
-label.pack(pady=10)
+label = tk.Label(app, text="Live Crypto Prices:", font=title_font)
+bitcoinLabel = tk.Label(app, text=f"Bitcoin Price: fetching...", font=gen_font)
+ethereumLabel = tk.Label(app, text=f"Ethereum Price: fetching...", font=gen_font)
+solanaLabel = tk.Label(app, text=f"Solana Price: fetching...", font=gen_font)
 
-# Create a button
-button = tk.Button(app, text="Click Me", command=on_button_click)
-button.pack(pady=10)
+label.pack(pady=10)
+bitcoinLabel.pack(pady=10)
+ethereumLabel.pack(pady=10)
+solanaLabel.pack(pady=10)
+
+update_price()
 
 # Start the main event loop
 app.mainloop()
