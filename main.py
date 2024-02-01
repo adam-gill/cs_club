@@ -38,7 +38,7 @@ def update_price():
     ethereumLabel.config(text=f"Ethereum Price: {eth_price}")
     solanaLabel.config(text=f"Solana Price: {sol_price}")
 
-    app.after(1500, update_price)
+    app.after(2000, update_price)
 
 # Create the main window
 app = tk.Tk()
